@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "baseUrl": ".",
+    "allowJs": false,
+    "target": "es2016",
+    "module": "commonjs",
+    "strict": true,
+    "importHelpers": true,
+    "noImplicitAny": false,
+    // 允许编译javascript文件
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "typeRoots": ["src/@types", "node_modules/@types"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

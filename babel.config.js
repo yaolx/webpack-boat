@@ -20,4 +20,7 @@ module.exports = {
     ["@babel/preset-react", { runtime: "automatic" }],
     "@babel/preset-typescript",
   ],
-};
+  plugins: [
+    ["import", { libraryName: "antd-mobile", libraryDirectory: "es/components", style: false }]
+  ]
+}

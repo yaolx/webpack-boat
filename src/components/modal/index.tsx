@@ -1,7 +1,7 @@
-import React, { useState, useRef, useImperativeHandle, useCallback, forwardRef } from 'react'
+import { useState, useRef, useImperativeHandle, useCallback, forwardRef } from 'react'
 
-import { LeftOutlined } from '@ant-design/icons'
-import { Modal } from 'antd'
+import { Modal } from 'antd-mobile'
+import { CloseOutline } from 'antd-mobile-icons'
 
 import styles from './style/index.module.less'
 
@@ -14,7 +14,7 @@ type ModalRefType = { open: () => void; close: () => void } | undefined
 const useModal = (modalProps: ModalProps, Slot) => {
   const { showClose } = modalProps
   const modalRef = useRef<ModalRefType>()
-  const FormModal = forwardRef(function FormModal(slotProps: any, mRef) {
+  const FormModal = forwardRef(function FormModal(slotProps, mRef) {
     const [visible, setVisible] = useState(false)
     const open = () => {
       setVisible(true)
@@ -24,15 +24,22 @@ const useModal = (modalProps: ModalProps, Slot) => {
     }
     useImperativeHandle(mRef, () => ({ open, close }))
     return (
-      <Modal className={styles.mask} onCancel={close} open={visible} footer={null}>
-        {showClose ? <LeftOutlined className={styles.back} onClick={close} /> : null}
-        <Slot {...slotProps} close={close} />
-      </Modal>
+      <Modal
+        maskClassName={styles.mask}
+        onClose={close}
+        visible={visible}
+        content={
+          <>
+            {showClose ? <CloseOutline className={styles.back} onClick={close} /> : null}
+            <Slot {...slotProps} close={close} />
+          </>
+        }
+      ></Modal>
     )
   })
 
   return {
-    FormModal: useCallback((props) => {
+    FormModal: useCallback(props => {
       return <FormModal ref={modalRef} {...props} />
     }, []),
     modalRef

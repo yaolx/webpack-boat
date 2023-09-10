@@ -1,8 +1,9 @@
-import { Configuration, DefinePlugin } from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import dotenv from 'dotenv'
-import WebpackBar from 'webpackbar'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import { Configuration, DefinePlugin } from 'webpack'
+import WebpackBar from 'webpackbar'
+
 import { isDev } from './constants'
 
 const path = require('path')
@@ -12,15 +13,7 @@ const envConfig = dotenv.config({
 })
 
 const styleLoadersArray = [
-  isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 开发环境使用style-looader,打包模式抽离css
-  {
-    loader: 'css-loader',
-    options: {
-      modules: {
-        localIdentName: '[path][name]__[local]--[hash:5]'
-      }
-    }
-  }
+  isDev ? 'style-loader' : MiniCssExtractPlugin.loader // 开发环境使用style-looader,打包模式抽离css
 ]
 
 const baseConfig: Configuration = {
@@ -45,12 +38,22 @@ const baseConfig: Configuration = {
       },
       {
         test: /.css$/, //匹配 css 文件
-        use: styleLoadersArray
+        use: [...styleLoadersArray, 'css-loader']
       },
       {
         test: /\.less$/,
+        exclude: /node_modules/,
         use: [
           ...styleLoadersArray,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__--[hash:5]'
+              }
+            }
+          },
+          'postcss-loader',
           {
             loader: 'less-loader',
             options: {

@@ -24,7 +24,7 @@ const useModal = (modalProps: ModalProps, Slot) => {
     }
     useImperativeHandle(mRef, () => ({ open, close }))
     return (
-      <Modal className={styles.mask} onCancel={close} visible={visible} footer={null}>
+      <Modal className={styles.mask} onCancel={close} open={visible} footer={null}>
         {showClose ? <LeftOutlined className={styles.back} onClick={close} /> : null}
         <Slot {...slotProps} close={close} />
       </Modal>

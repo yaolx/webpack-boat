@@ -72,7 +72,7 @@ const baseConfig: Configuration = {
           // 转为inline dataUrl的条件
           dataUrlCondition: {
             // 默认限制为8kb，现在调整限制为10kb，大文件直接作为asset/resource类型文件输出
-            maxSize: 10 * 1024
+            maxSize: 8 * 1024
           }
         },
         generator: {

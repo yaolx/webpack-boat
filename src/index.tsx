@@ -8,6 +8,7 @@ import '@/asset/styles/index.module.less'
 
 import '@/utils/debug'
 import 'antd-mobile/es/global'
+
 const rootElement = document.getElementById('root') as Element | DocumentFragment
 const root = ReactDom.createRoot(rootElement)
 root.render(

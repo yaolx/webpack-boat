@@ -12,7 +12,7 @@ function Home(): JSX.Element {
   const { modalRef, FormModal } = useModal({}, Student)
   const navigate = useNavigate()
   const gotoPage = () => {
-    navigate('student1')
+    navigate('student')
   }
   const gotoModal = () => {
     modalRef.current?.open()

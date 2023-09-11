@@ -1,6 +1,5 @@
+import { Button } from 'react-boat-comps'
 import { useNavigate } from 'react-router-dom'
-
-import { Button } from 'antd-mobile'
 
 import kkbimg from '@/asset/images/5kb_img.jpeg'
 import useModal from '@/components/modal'
@@ -23,16 +22,12 @@ function Home(): JSX.Element {
         <div className={styles.img}></div>
         <img src={kkbimg} />
         <div>
-          <Button color='primary' onClick={gotoPage} style={{ marginRight: 20 }}>
-            学生页面路由跳转
-          </Button>
-          <Button color='primary' onClick={gotoModal}>
-            学生页面打开弹框
-          </Button>
+          <Button primary onClick={gotoPage} style={{ marginRight: 20 }} label='学生页面路由跳转' />
+          <Button primary onClick={gotoModal} label='学生页面打开弹框' />
         </div>
         <div>
-          <Button color='primary'>登录</Button>
-          <Button color='primary'>注销</Button>
+          <Button primary label='登录' />
+          <Button primary label='注销' />
           登录状态
         </div>
         <p>
